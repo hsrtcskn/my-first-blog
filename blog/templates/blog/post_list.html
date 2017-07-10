@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>hsrtcskn's blog</title>
-</head>
-<body>
-    <p>Hello!</p>
-    <p>It's work!</p>
-    <div>
-        <h1><a href="">Hsrtcskn Blog</a></h1>
-    </div>
+{% extends 'blog/base.html' %}
 
+{% block content %}
     {% for post in posts %}
-    <div>
-        <p>published: {{ post.yayinlanma_tarihi }}</p>
-        <h2><a href="">{{ post.baslik }}</a></h2>
-        <p>{{ post.yazi|linebreaks }}</p>
-    </div>
-
+        <div class="post">
+            <div class="date">
+                {{ post.yayinlanma_tarihi }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.baslik }}</a></h1>
+            <p>{{ post.yazi|linebreaks }}</p>
+        </div>
     {% endfor %}
-</body>
-</html>
+{% endblock content %}
